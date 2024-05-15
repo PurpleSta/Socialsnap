@@ -1,0 +1,30 @@
+<section class="row">
+    <div class="col-md-12">
+       <nav class="navbar navbar-expand-md navbar-light btn-light p-3">
+               <a href='/' class="navbar-brand"><b class="text-info">SocialSnap</b></a>
+               <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                   <span class="navbar-toggler-icon"></span>
+              </button>
+
+               <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav">
+                         <a href='/' class="nav-item nav-link">Home</a>
+                         <a href='' class="nav-item nav-link">About US</a>
+                    </div>
+                   <div class="navbar-nav ms-auto">
+                    {% if session['key'] %}
+                        <a href="/logout" class="nav-link">logout</a>
+                    {% else %}
+                        <a href="/register" class="nav-item">Register</a> &nbsp; &nbsp; &nbsp;
+                        <a href="/login" class="nav-item">Login</a>
+                    {% endif %}
+                    <!--    TODO Logout-->
+                   </div>
+
+               </div>
+       </nav>
+    </div>
+</section>
+
+
+ 

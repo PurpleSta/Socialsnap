@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <link rel="stylesheet" href="../static/css/lightslider.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/jquery.js"></script>
+    <script src="../static/js/lightslider.js"></script>
+    <script src="../static/js/script.js"></script>
+
+</head>
+<body>
+    <div class="container-fluid">
+        {% include 'navbar.html' %}
+        <section class="row">
+            <div class="col-md-4">
+                <form action="/register" method="post" class="form-control" enctype="multipart/form-data">
+                    <h2>Register</h2>
+                    <input type="text" name="username" class="form-control" placeholder="Enter your username" required> <br>
+                    <input type="email" name="email" class="form-control" placeholder="Enter your email" required> <br>
+                    <input type="file" name="photo" class="form-control" placeholder="Photo" required> <br>
+                    <input type="password" name="password" class="form-control" placeholder="Enter your password" required> <br>
+                    <input type="password2" name="password2" class="form-control" placeholder="Confirm your password" required> <br>
+
+                    <input type="submit" value="Sign Up" class="btn btn-info">
+                </form> <br>
+                <a href="/login">Already have an account? Login here</a>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
