@@ -3,6 +3,7 @@ import pymysql
 import os
 from dotenv import load_dotenv
 load_dotenv()
+from functions import *
 
 app = Flask(__name__)
 app.secret_key = "kddjhdkvudhdjsdjpms"
@@ -25,6 +26,8 @@ def register():
         photo_name = photo.filename
         password = request.form["password"]
         password2 = request.form["password2"]
+        hashed_password = hash_salt_password(password)
+
 
         if len(password) <8:
             return render_template("register.html", error = "Password is too short")
@@ -43,7 +46,7 @@ def register():
             # username = cursor.fetchone()
             
             sql = "Insert into users(username, email, photo_name, password) values(%s, %s, %s, %s)"
-            cursor.execute(sql, (username, email, photo_name, password))
+            cursor.execute(sql, (username, email, photo_name, hashed_password))
             connection.commit()
 
             if request.method == "POST":
@@ -59,6 +62,8 @@ def login():
     else:
         username = request.form["username"]
         password = request.form["password"]
+        hashed_password = hash_salt_password(password)
+
 
         connection = pymysql.connect(
         host = os.getenv('DB_HOST'),
@@ -69,7 +74,7 @@ def login():
         
         cursor = connection.cursor()
         sql = "select * from users where username = %s and password = %s"
-        cursor.execute(sql, (username, password))
+        cursor.execute(sql, (username, hashed_password))
 
         if cursor.rowcount == 0:
             return render_template("login.html", message = "Invalid credentials!!")
